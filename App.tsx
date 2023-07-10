@@ -10,75 +10,29 @@ import SvgHomeIcon from './src/assets/HomeIcon';
 import SvgFavoriteIcon from './src/assets/FavoriteIcon';
 import SvgProfile from './src/assets/ProfileIcon';
 import SplashScreen from 'react-native-splash-screen';
+import TrashEmptyScreen from './src/trashemptyscreen/TrashEmptyScreen';
+import OpenScreen from './src/navigation/screens/Open/OpenScreen';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-const HomeTabNavigator: React.FC = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={() => ({
-        tabBarStyle: {
-          borderTopWidth: 0,
-        },
-        tabBarActiveTintColor: '#815CFF',
-        tabBarInactiveTintColor: '#444444',
-        headerShown: false,
-      })}>
-      <Tab.Screen
-        name="Plants"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgHomeIcon
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
-            />
-          ),
-        }}
-        component={HomeStackNavigator}
-      />
-      <Tab.Screen
-        name="Favorites"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgFavoriteIcon
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
-            />
-          ),
-        }}
-        component={FavoritesScreen}
-      />
-      <Tab.Screen
-        name="My Plants"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgProfile
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
-            />
-          ),
-        }}
-        component={MyPlantsScreen}
-      />
-    </Tab.Navigator>
-  );
-};
 
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
+
+  const WholeStack = createNativeStackNavigator()
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeMain">
-        <Stack.Screen
-          name="HomeMain"
-          component={HomeTabNavigator}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
+  <NavigationContainer>
+    <WholeStack.Navigator>
+        <WholeStack.Screen name="OpenScreen"
+          component={OpenScreen}
+          options={{ headerShown: false }}
+          />
+        <WholeStack.Screen 
+        component={HomeStackNavigator}
+        name="HomeStack"/>
+    </WholeStack.Navigator>
     </NavigationContainer>
   );
 };
