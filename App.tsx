@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeStackNavigator} from './src/navigation/stack/HomeStack';
@@ -9,6 +9,7 @@ import MyPlantsScreen from './src/navigation/screens/MyPlantsScreen';
 import SvgHomeIcon from './src/assets/HomeIcon';
 import SvgFavoriteIcon from './src/assets/FavoriteIcon';
 import SvgProfile from './src/assets/ProfileIcon';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,6 +66,10 @@ const HomeTabNavigator: React.FC = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeMain">
