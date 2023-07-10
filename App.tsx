@@ -10,68 +10,20 @@ import SvgHomeIcon from './src/assets/HomeIcon';
 import SvgFavoriteIcon from './src/assets/FavoriteIcon';
 import SvgProfile from './src/assets/ProfileIcon';
 import SplashScreen from 'react-native-splash-screen';
+
 import OnboardingScreen from './src/navigation/screens/OnboardingScreen';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-const HomeTabNavigator: React.FC = () => {
-  return (
-    <Tab.Navigator
-      screenOptions={() => ({
-        tabBarStyle: {
-          borderTopWidth: 0,
-        },
-        tabBarActiveTintColor: '#815CFF',
-        tabBarInactiveTintColor: '#444444',
-        headerShown: false,
-      })}>
-      <Tab.Screen
-        name="Plants"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgHomeIcon
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
-            />
-          ),
-        }}
-        component={HomeStackNavigator}
-      />
-      <Tab.Screen
-        name="Favorites"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgFavoriteIcon
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
-            />
-          ),
-        }}
-        component={FavoritesScreen}
-      />
-      <Tab.Screen
-        name="My Plants"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgProfile
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
-            />
-          ),
-        }}
-        component={MyPlantsScreen}
-      />
-    </Tab.Navigator>
-  );
-};
 
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
+
+  const WholeStack = createNativeStackNavigator()
+
   return (
+
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Onboarding">
         <Stack.Screen
@@ -85,7 +37,8 @@ const App = () => {
           options={{headerShown: false}}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+
+
   );
 };
 

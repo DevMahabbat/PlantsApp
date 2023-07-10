@@ -13,7 +13,7 @@ const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 
 export const HomeStackNavigator: React.FC = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator initialRouteName="HomeScreen">
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
