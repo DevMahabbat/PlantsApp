@@ -10,8 +10,8 @@ import SvgHomeIcon from './src/assets/HomeIcon';
 import SvgFavoriteIcon from './src/assets/FavoriteIcon';
 import SvgProfile from './src/assets/ProfileIcon';
 import SplashScreen from 'react-native-splash-screen';
-import TrashEmptyScreen from './src/trashemptyscreen/TrashEmptyScreen';
-import OpenScreen from './src/navigation/screens/Open/OpenScreen';
+
+import OnboardingScreen from './src/navigation/screens/OnboardingScreen';
 
 
 const App = () => {
@@ -23,17 +23,22 @@ const App = () => {
   const WholeStack = createNativeStackNavigator()
 
   return (
-  <NavigationContainer>
-    <WholeStack.Navigator>
-        <WholeStack.Screen name="OpenScreen"
-          component={OpenScreen}
-          options={{ headerShown: false }}
-          />
-        <WholeStack.Screen 
-        component={HomeStackNavigator}
-        name="HomeStack"/>
-    </WholeStack.Navigator>
-    </NavigationContainer>
+
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Onboarding">
+        <Stack.Screen
+          name="Onboarding"
+          component={OnboardingScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="HomeMain"
+          component={HomeTabNavigator}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+
+
   );
 };
 
