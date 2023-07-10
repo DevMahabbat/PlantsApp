@@ -10,6 +10,7 @@ import SvgHomeIcon from './src/assets/HomeIcon';
 import SvgFavoriteIcon from './src/assets/FavoriteIcon';
 import SvgProfile from './src/assets/ProfileIcon';
 import SplashScreen from 'react-native-splash-screen';
+import OnboardingScreen from './src/navigation/screens/OnboardingScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,7 +73,12 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeMain">
+      <Stack.Navigator initialRouteName="Onboarding">
+        <Stack.Screen
+          name="Onboarding"
+          component={OnboardingScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="HomeMain"
           component={HomeTabNavigator}
