@@ -1,118 +1,80 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import {StyleSheet} from 'react-native';
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {HomeStackNavigator} from './src/navigation/stack/HomeStack';
+import {NavigationContainer} from '@react-navigation/native';
+import FavoritesScreen from './src/navigation/screens/FavoritesScreen';
+import MyPlantsScreen from './src/navigation/screens/MyPlantsScreen';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const HomeTabNavigator: React.FC = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarStyle: {
+          borderTopWidth: 0,
+        },
+        tabBarActiveTintColor: '#815CFF',
+        tabBarInactiveTintColor: '#444444',
+        headerShown: false,
+      })}>
+      <Tab.Screen
+        name="Plants"
+        // options={{
+        //   tabBarIcon: ({focused}: any) => (
+        //     <SvgHomeIcon
+        //       stroke={focused ? '#815CFF' : '#444444'}
+        //       fill={focused ? '#E5DEFF' : '#fff'}
+        //     />
+        //   ),
+        // }}
+        component={HomeStackNavigator}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      <Tab.Screen
+        name="Favorites"
+        // options={{
+        //   tabBarIcon: ({focused}: any) => (
+        //     <SvgHomeIcon
+        //       stroke={focused ? '#815CFF' : '#444444'}
+        //       fill={focused ? '#E5DEFF' : '#fff'}
+        //     />
+        //   ),
+        // }}
+        component={FavoritesScreen}
+      />
+      <Tab.Screen
+        name="My Plants"
+        // options={{
+        //   tabBarIcon: ({focused}: any) => (
+        //     <SvgHomeIcon
+        //       stroke={focused ? '#815CFF' : '#444444'}
+        //       fill={focused ? '#E5DEFF' : '#fff'}
+        //     />
+        //   ),
+        // }}
+        component={MyPlantsScreen}
+      />
+    </Tab.Navigator>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="HomeMain">
+        <Stack.Screen
+          name="HomeMain"
+          component={HomeTabNavigator}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
 export default App;
+
+const styles = StyleSheet.create({});
