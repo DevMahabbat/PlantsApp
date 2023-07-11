@@ -14,7 +14,7 @@ export const HomeTabNavigator: React.FC = () => {
         tabBarStyle: {
           borderTopWidth: 0,
         },
-        tabBarActiveTintColor: '#815CFF',
+        tabBarActiveTintColor: '#2D6936',
         tabBarInactiveTintColor: '#444444',
         headerShown: false,
       })}>
@@ -23,8 +23,8 @@ export const HomeTabNavigator: React.FC = () => {
         options={{
           tabBarIcon: ({focused}: any) => (
             <SvgHomeIcon
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
+              stroke={focused ? '#2D6936' : '#444444'}
+              fill={focused ? '#D4E4D2' : '#fff'}
             />
           ),
         }}
@@ -35,8 +35,8 @@ export const HomeTabNavigator: React.FC = () => {
         options={{
           tabBarIcon: ({focused}: any) => (
             <SvgFavoriteIcon
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
+              stroke={focused ? '#2D6936' : '#444444'}
+              fill={focused ? '#D4E4D2' : '#fff'}
             />
           ),
         }}
@@ -47,8 +47,8 @@ export const HomeTabNavigator: React.FC = () => {
         options={{
           tabBarIcon: ({focused}: any) => (
             <SvgProfile
-              stroke={focused ? '#815CFF' : '#444444'}
-              fill={focused ? '#E5DEFF' : '#fff'}
+              stroke={focused ? '#2D6936' : '#444444'}
+              fill={focused ? '#D4E4D2' : '#fff'}
             />
           ),
         }}
