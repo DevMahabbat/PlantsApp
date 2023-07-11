@@ -30,18 +30,7 @@ export const HomeTabNavigator: React.FC = () => {
         }}
         component={HomeStackNavigator}
       />
-      <Tab.Screen
-        name="Favorites"
-        options={{
-          tabBarIcon: ({focused}: any) => (
-            <SvgFavoriteIcon
-              stroke={focused ? '#2D6936' : '#444444'}
-              fill={focused ? '#D4E4D2' : '#fff'}
-            />
-          ),
-        }}
-        component={FavoritesScreen}
-      />
+
       <Tab.Screen
         name="My Plants"
         options={{
@@ -53,6 +42,18 @@ export const HomeTabNavigator: React.FC = () => {
           ),
         }}
         component={MyPlantsScreen}
+      />
+      <Tab.Screen
+        name="Favorites"
+        options={{
+          tabBarIcon: ({focused}: any) => (
+            <SvgFavoriteIcon
+              stroke={focused ? '#2D6936' : '#444444'}
+              fill={focused ? '#D4E4D2' : '#fff'}
+            />
+          ),
+        }}
+        component={FavoritesScreen}
       />
     </Tab.Navigator>
   );
