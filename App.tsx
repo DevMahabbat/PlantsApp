@@ -20,7 +20,7 @@ const App = () => {
   }, []);
 
 
-  const WholeStack = createNativeStackNavigator()
+  const Stack = createNativeStackNavigator()
 
   return (
 
@@ -33,15 +33,14 @@ const App = () => {
         />
         <Stack.Screen
           name="HomeMain"
-          component={HomeTabNavigator}
+          component={HomeStackNavigator}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
-
+</NavigationContainer>
 
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({});
