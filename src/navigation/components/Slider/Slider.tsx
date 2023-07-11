@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 
 const data = [
-  {id: 1, source: require('../../../assets/images/plant2.png')},
-  {id: 2, source: require('../../../assets/images/plant3.png')},
+  {id: 1, source: require('../../../assets/images/plantonb2.png')},
+  {id: 2, source: require('../../../assets/images/plant2.png')},
   {id: 3, source: require('../../../assets/images/plantonb.png')},
 ];
 
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 20,
     marginTop: 20,
+    resizeMode: 'contain',
   },
   paginationContainer: {
     flexDirection: 'row',

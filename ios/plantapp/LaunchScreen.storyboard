@@ -17,24 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="IKS-8W-9GW">
-                                <rect key="frame" x="0.0" y="-76" width="375" height="856"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="900" id="2M9-wm-H2c"/>
-                                    <constraint firstAttribute="height" constant="700" id="PKN-CK-pH1"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="900" id="ugb-dE-JQr"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="PrL-ue-zzU">
+                                <rect key="frame" x="-28" y="0.0" width="414" height="667"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IKS-8W-9GW" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="DUs-bL-yux"/>
-                            <constraint firstAttribute="bottom" secondItem="IKS-8W-9GW" secondAttribute="bottom" id="SFP-tP-Fjo"/>
-                            <constraint firstItem="IKS-8W-9GW" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="fgc-8h-27g"/>
-                            <constraint firstItem="IKS-8W-9GW" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="taM-oZ-zbJ"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="IKS-8W-9GW" secondAttribute="trailing" id="uIS-b6-oSa"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="IKS-8W-9GW" secondAttribute="bottom" id="xEN-YM-u4I"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="PrL-ue-zzU" secondAttribute="trailing" id="EAJ-OI-2Ca"/>
+                            <constraint firstItem="PrL-ue-zzU" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="HEE-UH-uB4"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="PrL-ue-zzU" secondAttribute="bottom" id="eoC-p2-sVp"/>
+                            <constraint firstItem="PrL-ue-zzU" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="hxr-ue-R4O"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -44,7 +37,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_screen" width="227" height="448.5"/>
+        <image name="launch_screen" width="199" height="426"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
