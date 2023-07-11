@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import OnboardingScreen from './src/navigation/screens/OnboardingScreen';
 import {HomeTabNavigator} from './src/navigation/navigator/HomeTabNavigator';
+import { HomeStackNavigator } from './src/navigation/stack/HomeStack';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,7 @@ const App = () => {
         />
         <Stack.Screen
           name="HomeMain"
-          component={HomeTabNavigator}
+          component={HomeStackNavigator}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
@@ -35,4 +36,3 @@ const App = () => {
 
 export default App;
 
-const styles = StyleSheet.create({});
