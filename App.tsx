@@ -26,7 +26,7 @@ const App = () => {
         />
         <Stack.Screen
           name="HomeMain"
-          component={HomeStackNavigator}
+          component={HomeTabNavigator}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
