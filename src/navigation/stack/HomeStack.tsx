@@ -13,7 +13,12 @@ const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 
 export const HomeStackNavigator: React.FC = () => {
   return (
-    <HomeStack.Navigator initialRouteName="HomeScreen">
+    <HomeStack.Navigator
+      initialRouteName="HomeScreen"
+      screenOptions={{
+        headerShown: false,
+        // Set the desired background color
+      }}>
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}

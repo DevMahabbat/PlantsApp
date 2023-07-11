@@ -8,7 +8,7 @@ const SvgHomeIcon = props => (
     fill="none"
     {...props}>
     <Path
-      stroke="#292D32"
+      // stroke="#292D32"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
