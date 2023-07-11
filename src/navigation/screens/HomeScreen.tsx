@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import SvgLikeIcon from '../../assets/LikeIcon';
 import SvgRating from '../../assets/Star';
@@ -7,7 +14,7 @@ import SvgRatingFilled from '../../assets/SvgRatingFilled';
 const HomeScreen = ({navigation}: any) => {
   return (
     <View style={styles.mainCont}>
-      <View style={styles.maincontwrapper}>
+      <ScrollView style={styles.maincontwrapper}>
         <View style={styles.toptext}>
           <Text style={styles.label}>Discover</Text>
           <Image
@@ -42,7 +49,7 @@ const HomeScreen = ({navigation}: any) => {
             </View>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
