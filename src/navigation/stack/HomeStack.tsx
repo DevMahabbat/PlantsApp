@@ -2,11 +2,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import MyPlantsScreen from '../screens/MyPlantsScreen';
+import HomeDetailsScreen from '../screens/HomeDetailsScreen';
 
 type HomeStackParamList = {
   HomeScreen: undefined;
-  FavoritesScreen: undefined;
-  MyPlantsScreen: undefined;
+  HomeDetails: undefined;
 };
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
@@ -25,13 +25,8 @@ export const HomeStackNavigator: React.FC = () => {
         options={{headerShown: false}}
       />
       <HomeStack.Screen
-        name="FavoritesScreen"
-        component={FavoritesScreen}
-        options={{headerShown: false}}
-      />
-      <HomeStack.Screen
-        name="MyPlantsScreen"
-        component={MyPlantsScreen}
+        name="HomeDetails"
+        component={HomeDetailsScreen}
         options={{headerShown: false}}
       />
     </HomeStack.Navigator>
