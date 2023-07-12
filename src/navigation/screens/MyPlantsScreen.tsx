@@ -7,21 +7,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import SvgAddPlant from '../../assets/AddPlantIcon';
 
 // for image picker
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const MyPlantsScreen = () => {
+  const [selectImage, setSelectImage] = useState('');
   let options = {
     storageOptions: {
       path: 'image',
     },
   };
+
   const ImagePicker = () => {
     launchImageLibrary(options, response => {
-      console.log(response);
+      setSelectImage(response.assets[0].uri);
+      console.log(response.assets[0].uri);
     }).catch(error => {
       console.log('Image picker error:', error);
     });
