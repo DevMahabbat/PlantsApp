@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
   },
   favWrapper: {
     alignSelf: 'flex-start',
+    // right: 2,
     borderWidth: 1,
     borderRadius: 22,
     padding: 5,
