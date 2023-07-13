@@ -1,12 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import axios from 'axios';
-import { Plant } from '../types/Plant';
-
+import {Plant} from '../types/Plant';
 
 interface initialStateType {
   loading: 'rejected' | 'pending' | 'fullfilled' | null;
-  plants: Array<Plant> | any;
+  plants: Array<Plant>;
   error: Error | null | any;
   currentPlant: Plant | null;
 }
@@ -21,32 +20,33 @@ const initialState: initialStateType = {
 export const getAllPlants = createAsyncThunk(
   'get/all',
   async (data, {rejectWithValue}) => {
-
- 
     try {
-      const res = await axios.get('http://10.0.2.2:3000/plants');
-      console.log("Plant data fetched");
-      return await res.data;
+      const res = await axios.get('https://plantsapp-s6m7.onrender.com/plants');
+
+      console.log('Plant data fetched', res.data[0].photos[0].imageUrl);
+      return res.data;
     } catch (error: any) {
       rejectWithValue(error);
     }
   },
 );
 
-export const getCurrentPlant = createAsyncThunk("get/current", async (data:any, {rejectWithValue}) => {
-    
+export const getCurrentPlant = createAsyncThunk(
+  'get/current',
+  async (data: any, {rejectWithValue}) => {
     try {
       // console.log("burda1");
-        let {id} = data;
-      const res = await(axios.get(`http://10.0.2.2:3000/plants/${id}`));
-console.log('Current Plant Fetched');
+      let {id} = data;
+      const res = await axios.get(
+        `https://plantsapp-s6m7.onrender.com/plants/${id}`,
+      );
+      console.log('Current Plant Fetched');
       return await res.data;
     } catch (error: any) {
       rejectWithValue(error);
     }
-
-})
-
+  },
+);
 
 // export const deleteBlogByID = createAsyncThunk(
 //   'delete',
@@ -63,14 +63,12 @@ console.log('Current Plant Fetched');
 //           );
 //           return all.data;
 //         };
-      
- 
+
 //     } catch (error: any) {
 //       rejectWithValue(error);
 //     }
 //   },
 // );
-
 
 const plantslice = createSlice({
   name: 'plantslice',
@@ -87,37 +85,35 @@ const plantslice = createSlice({
       })
       .addCase(getAllPlants.fulfilled, (state, action) => {
         state.plants = action.payload;
+         state.loading = 'fullfilled';
+      
+      });
+
+    builder
+      .addCase(getCurrentPlant.pending, state => {
+        state.loading = 'pending';
+      })
+      .addCase(getCurrentPlant.rejected, (state, action) => {
+        state.loading = 'rejected';
+        state.error = action.payload;
+      })
+      .addCase(getCurrentPlant.fulfilled, (state, action) => {
+        state.currentPlant = action.payload;
         state.loading = 'fullfilled';
-  
-      }) 
-      
-        builder
-          .addCase(getCurrentPlant.pending, state => {
-            state.loading = 'pending';
-          })
-          .addCase(getCurrentPlant.rejected, (state, action) => {
-            state.loading = 'rejected';
-            state.error = action.payload;
-          })
-          .addCase(getCurrentPlant.fulfilled, (state, action) => {
-            state.currentPlant = action.payload;
-            state.loading = 'fullfilled';
-          })
+      });
 
-
-          // builder
-          //   .addCase(deleteBlogByID.pending, state => {
-          //     state.loading = 'pending';
-          //   })
-          //   .addCase(deleteBlogByID.rejected, (state, action) => {
-          //     state.loading = 'rejected';
-          //     state.error = action.payload;
-          //   })
-          //   .addCase(deleteBlogByID.fulfilled, (state, action) => {
-          //     state.loading = 'fullfilled';
-          //     state.blogs = action.payload;
-          //   });
-      
+    // builder
+    //   .addCase(deleteBlogByID.pending, state => {
+    //     state.loading = 'pending';
+    //   })
+    //   .addCase(deleteBlogByID.rejected, (state, action) => {
+    //     state.loading = 'rejected';
+    //     state.error = action.payload;
+    //   })
+    //   .addCase(deleteBlogByID.fulfilled, (state, action) => {
+    //     state.loading = 'fullfilled';
+    //     state.blogs = action.payload;
+    //   });
   },
 });
 

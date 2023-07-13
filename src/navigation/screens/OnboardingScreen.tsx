@@ -8,6 +8,7 @@ import {
   Text,
 } from 'react-native';
 import OnboardingItem from '../components/Onboarding/OnboardingItem';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface OnboardingItemData {
   id: string;
@@ -51,11 +52,13 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({navigation}) => {
     }
   }, [currentIndex]);
 
-  const handleNext = () => {
+  const handleNext =async () => {
     if (currentIndex < onboardingData.length - 1) {
       setCurrentIndex(prevIndex => prevIndex + 1);
     } else {
+     await AsyncStorage.setItem("FIRST_TIME", "false")
       navigation.replace('HomeMain');
+
     }
   };
 
