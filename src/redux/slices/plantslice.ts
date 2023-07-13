@@ -24,7 +24,7 @@ export const getAllPlants = createAsyncThunk(
 
  
     try {
-      const res = await axios.get('https:/10.0.2.2/plants');
+      const res = await axios.get('http://10.0.2.2:3000/plants');
       console.log("Plant data fetched");
       return await res.data;
     } catch (error: any) {
@@ -38,7 +38,7 @@ export const getCurrentPlant = createAsyncThunk("get/current", async (data:any, 
     try {
       // console.log("burda1");
         let {id} = data;
-      const res = await(axios.get(`https:/10.0.2.2/plants/${id}`));
+      const res = await(axios.get(`http://10.0.2.2:3000/plants/${id}`));
 console.log('Current Plant Fetched');
       return await res.data;
     } catch (error: any) {

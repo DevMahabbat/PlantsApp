@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import PlantSlice from "./slices/plantslice";
+import plantslice from "./slices/plantslice";
 
 
 export const store = configureStore({
    reducer :{
-    plantSlice: PlantSlice
+    plantSlice: plantslice
    //  themeSlice: themeSlice,
    //  placeslice:placeslice
 
