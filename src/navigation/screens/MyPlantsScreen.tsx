@@ -1,11 +1,12 @@
 import {
+  Alert,
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  TextInput,
 } from 'react-native';
 import React, {useState} from 'react';
 import SvgAddPlant from '../../assets/AddPlantIcon';
@@ -14,20 +15,37 @@ import SvgAddPlant from '../../assets/AddPlantIcon';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const MyPlantsScreen = () => {
-  const [selectImage, setSelectImage] = useState('');
-  let options = {
-    storageOptions: {
-      path: 'image',
-    },
+  const [selectImage, setSelectImage] = useState<any>('');
+  const [plantName, setPlantName] = useState('');
+  const [plantDescription, setPlantDescription] = useState('');
+
+  const launchImagePicker = () => {
+    launchImageLibrary({mediaType: 'photo'}, response => {
+      if (!response.didCancel) {
+        setSelectImage(response);
+      }
+    });
+  };
+  const launchCameraPicker = async () => {
+    await launchCamera({mediaType: 'photo'}, response => {
+      if (!response.didCancel) {
+        console.log('res', response);
+
+        setSelectImage(response);
+      }
+    });
   };
 
-  const ImagePicker = () => {
-    launchImageLibrary(options, response => {
-      setSelectImage(response.assets[0].uri);
-      console.log(response.assets[0].uri);
-    }).catch(error => {
-      console.log('Image picker error:', error);
-    });
+  const handleAddButtonPress = () => {
+    Alert.alert(
+      'Add Plant',
+      'Choose an option',
+      [
+        {text: 'Camera', onPress: launchCameraPicker.bind(this)},
+        {text: 'Image Library', onPress: launchImagePicker.bind(this)},
+      ],
+      {cancelable: true},
+    );
   };
 
   return (
@@ -39,20 +57,48 @@ const MyPlantsScreen = () => {
         </View>
 
         <View style={styles.addplantwrapper}>
-          <Text style={{fontSize: 18}}>Add new plant</Text>
+          <Text style={{fontSize: 16}}>Add new plant</Text>
           <TouchableOpacity
             style={styles.plantBtn}
-            onPress={() => ImagePicker()}>
+            onPress={() => handleAddButtonPress()}>
             <SvgAddPlant />
           </TouchableOpacity>
         </View>
         {/* Here will be the preview */}
-        <View>
-          <View></View>
-        </View>
+        {selectImage && (
+          <View>
+            <Text style={{marginTop: 20, marginBottom: 10, fontSize: 18}}>
+              Preview
+            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Plant Name"
+              value={plantName}
+              onChangeText={text => setPlantName(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Plant Description"
+              value={plantDescription}
+              onChangeText={text => setPlantDescription(text)}
+            />
+          </View>
+        )}
+        {selectImage ? (
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Image
+              source={{uri: selectImage.assets[0].uri}}
+              style={{width: 80, height: 80, borderRadius: 8}}
+            />
+            <TouchableOpacity style={styles.submitBtn}>
+              <Text style={{color: '#fff'}}>Add </Text>
+            </TouchableOpacity>
+          </View>
+        ) : null}
+
         {/* Here the plants will be addded */}
         <View>
-          <Text style={{marginTop: 20, fontSize: 18}}>Added plants</Text>
+          <Text style={{marginTop: 60, fontSize: 18}}>Added plants</Text>
           <View style={styles.itemswrapper}>
             <Image
               style={styles.image}
@@ -141,5 +187,21 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 8,
     marginTop: 20,
+  },
+  input: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  submitBtn: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#4C864A',
+    width: 100,
+    alignItems: 'center',
+    paddingVertical: 5,
+    borderRadius: 8,
   },
 });

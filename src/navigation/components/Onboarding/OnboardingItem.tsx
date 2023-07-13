@@ -30,13 +30,15 @@ const OnboardingItem: React.FC<OnboardingItemProps> = ({
   imageStyle,
 }) => {
   return (
-    <View style={[styles.pageContainer, containerStyle]}>
-      <Text style={[styles.title, titleStyle]}>{data.title}</Text>
-      <Image source={data.image} style={[styles.image, imageStyle]} />
-      <Text style={[styles.description, descriptionStyle]}>
-        {data.description}
-      </Text>
-    </View>
+    <>
+      <View style={[styles.pageContainer, containerStyle]}>
+        <Text style={[styles.title, titleStyle]}>{data.title}</Text>
+        <Image source={data.image} style={[styles.image, imageStyle]} />
+        <Text style={[styles.description, descriptionStyle]}>
+          {data.description}
+        </Text>
+      </View>
+    </>
   );
 };
 

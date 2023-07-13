@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -16,18 +16,30 @@ const data = [
 
 const Slider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const flatListRef = useRef<FlatList>(null);
 
   const renderItem = ({item}: any) => {
     return <Image source={item.source} style={styles.slideImage} />;
   };
 
-  const handlePaginationPress = (index: any) => {
+  const handlePaginationPress = (index: number) => {
     setActiveIndex(index);
+    const offset = index * Dimensions.get('window').width;
+    flatListRef.current?.scrollToOffset({offset, animated: true});
   };
+
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     handleNext();
+  //   }, 3000);
+
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
     <View style={styles.container}>
       <FlatList
+        ref={flatListRef}
         data={data}
         renderItem={renderItem}
         horizontal

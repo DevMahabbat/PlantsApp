@@ -1,9 +1,17 @@
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import Slider from '../components/Slider/Slider';
 import SvgLikeIcon from '../../assets/LikeIcon';
 import SvgRatingFilled from '../../assets/SvgRatingFilled';
 import SvgRating from '../../assets/Star';
+import SvgBack from '../../assets/BackIcon';
 
 const comments = [
   {
@@ -18,9 +26,14 @@ const comments = [
   },
 ];
 
-const HomeDetailsScreen = () => {
+const HomeDetailsScreen = ({navigation}: any) => {
   return (
     <View style={styles.mainCont}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.backBtn}>
+        <SvgBack />
+      </TouchableOpacity>
       <ScrollView style={styles.maincontwrapper}>
         <Slider />
         <View style={styles.toptext}>
@@ -118,5 +131,16 @@ const styles = StyleSheet.create({
   },
   commentText: {
     fontSize: 14,
+  },
+  backBtn: {
+    position: 'absolute',
+    top: 95,
+    left: 20,
+    padding: 5,
+    borderRadius: 30,
+    backgroundColor: '#D4E4D2',
+    borderColor: '#D4E4D2',
+    borderWidth: 1,
+    zIndex: 9999,
   },
 });
