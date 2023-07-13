@@ -10,6 +10,6 @@ export type Plant = {
   ratingCount?: number;
   publishDate?: Date;
   comments?: Comment[];
-  photos? : Photo[];
-  id: string;
+  photos : Photo[];
+  _id: string;
 };
