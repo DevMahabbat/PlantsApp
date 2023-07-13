@@ -30,7 +30,6 @@ const MyPlantsScreen = () => {
     await launchCamera({mediaType: 'photo'}, response => {
       if (!response.didCancel) {
         console.log('res', response);
-
         setSelectImage(response);
       }
     });

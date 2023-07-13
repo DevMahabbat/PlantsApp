@@ -82,6 +82,9 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.navigate('HomeMain')}>
+        <Text style={styles.skipText}>Skip</Text>
+      </TouchableOpacity>
       <FlatList
         ref={flatListRef}
         data={onboardingData}
@@ -148,6 +151,14 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  skipText: {
+    marginTop: 60,
+    alignSelf: 'flex-end',
+    marginRight: 30,
+    fontSize: 16,
+    color: '#47734DD9',
+    fontWeight: '600',
   },
 });
 
