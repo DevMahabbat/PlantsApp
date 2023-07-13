@@ -6,12 +6,39 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SvgLikeIcon from '../../assets/LikeIcon';
 import SvgRating from '../../assets/Star';
 import SvgRatingFilled from '../../assets/SvgRatingFilled';
-
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+import { AppDispatch } from '../../redux';
+import { getAllPlants } from '../../redux/slices/plantslice';
 const HomeScreen = ({navigation}: any) => {
+let plantData = useSelector((state: RootState) => state.plantSlice)
+const dispatch = useDispatch<AppDispatch>()
+  // useEffect(() => {
+  //   console.log("axios req");
+  //   axios.get('http://10.0.2.2:3000/plants').then(res => {
+  //     console.log('unnecessary testind place data::', res.data);
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // }, [])
+  
+
+  useEffect(() => {
+dispatch(getAllPlants())
+
+
+  },[])
+
+console.log(plantData);
+
+
+
+
   return (
     <View style={styles.mainCont}>
       <ScrollView style={styles.maincontwrapper}>

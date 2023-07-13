@@ -7,16 +7,22 @@ import SplashScreen from 'react-native-splash-screen';
 import OnboardingScreen from './src/navigation/screens/OnboardingScreen';
 import {HomeTabNavigator} from './src/navigation/navigator/HomeTabNavigator';
 import { HomeStackNavigator } from './src/navigation/stack/HomeStack';
+import axios from 'axios';
+import { Provider } from 'react-redux';
+import store from './src/redux';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   useEffect(() => {
+    
     SplashScreen.hide();
   }, []);
 
+
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Onboarding">
         <Stack.Screen
@@ -31,6 +37,7 @@ const App = () => {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 };
 
