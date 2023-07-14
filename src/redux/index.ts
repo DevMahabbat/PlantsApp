@@ -1,16 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import PlantSlice from "./slices/plantslice";
-import plantslice from "./slices/plantslice";
-
+import {configureStore} from '@reduxjs/toolkit';
+import plantslice from './slices/plantslice';
 
 export const store = configureStore({
-   reducer :{
-    plantSlice: plantslice
-   //  themeSlice: themeSlice,
-   //  placeslice:placeslice
-
-   }
-})
+  reducer: {
+    plantSlice: plantslice,
+    //  themeSlice: themeSlice,
+    //  placeslice:placeslice
+  },
+});
 
 export default store;
 export type AppDispatch = typeof store.dispatch;

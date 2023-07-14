@@ -1,5 +1,5 @@
-export type Comment ={
-    id?: string;
-    content?: string;
-    __v : string;
-}
+export type Comment = {
+  id?: string;
+  content?: string;
+  __v: string;
+};

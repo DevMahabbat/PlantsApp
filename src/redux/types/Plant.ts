@@ -1,6 +1,5 @@
-import { Comment } from "./Comment";
-import { Photo } from "./Photo";
-
+import {Comment} from './Comment';
+import {Photo} from './Photo';
 
 export type Plant = {
   name: string;
@@ -10,6 +9,6 @@ export type Plant = {
   ratingCount?: number;
   publishDate?: Date;
   comments?: Comment[];
-  photos : Photo[];
+  photos: Photo[];
   _id: string;
 };

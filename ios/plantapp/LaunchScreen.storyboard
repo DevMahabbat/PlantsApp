@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="PrL-ue-zzU">
-                                <rect key="frame" x="-28" y="0.0" width="414" height="667"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen" translatesAutoresizingMaskIntoConstraints="NO" id="EQU-Dc-gGa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="PrL-ue-zzU" secondAttribute="trailing" id="EAJ-OI-2Ca"/>
-                            <constraint firstItem="PrL-ue-zzU" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="HEE-UH-uB4"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="PrL-ue-zzU" secondAttribute="bottom" id="eoC-p2-sVp"/>
-                            <constraint firstItem="PrL-ue-zzU" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="hxr-ue-R4O"/>
+                            <constraint firstItem="EQU-Dc-gGa" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="aj4-tX-Mwc"/>
+                            <constraint firstItem="EQU-Dc-gGa" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="ebL-Jf-rJc"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="EQU-Dc-gGa" secondAttribute="bottom" id="mkS-3s-Jvl"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="EQU-Dc-gGa" secondAttribute="trailing" id="r2c-TQ-KPV"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +37,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_screen" width="199" height="426"/>
+        <image name="launch_screen" width="103" height="224"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

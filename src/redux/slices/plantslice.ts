@@ -8,6 +8,7 @@ interface initialStateType {
   plants: Array<Plant>;
   error: Error | null | any;
   currentPlant: Plant | null;
+  currentPlantImages: string[];
 }
 
 const initialState: initialStateType = {
@@ -15,6 +16,7 @@ const initialState: initialStateType = {
   plants: [],
   error: null,
   currentPlant: null,
+  currentPlantImages: [],
 };
 
 export const getAllPlants = createAsyncThunk(
@@ -24,7 +26,11 @@ export const getAllPlants = createAsyncThunk(
       const res = await axios.get('https://plantsapp-s6m7.onrender.com/plants');
 
       console.log('Plant data fetched', res.data[0].photos[0].imageUrl);
-      return res.data;
+      const plantsWithImages = res.data.map((plant: any) => ({
+        ...plant,
+        images: plant.photos.map((photo: any) => photo.imageUrl),
+      }));
+      return plantsWithImages;
     } catch (error: any) {
       rejectWithValue(error);
     }
@@ -85,8 +91,7 @@ const plantslice = createSlice({
       })
       .addCase(getAllPlants.fulfilled, (state, action) => {
         state.plants = action.payload;
-         state.loading = 'fullfilled';
-      
+        state.loading = 'fullfilled';
       });
 
     builder
@@ -99,6 +104,9 @@ const plantslice = createSlice({
       })
       .addCase(getCurrentPlant.fulfilled, (state, action) => {
         state.currentPlant = action.payload;
+        state.currentPlantImages = action.payload.photos.map(
+          (photo: any) => photo.imageUrl,
+        );
         state.loading = 'fullfilled';
       });
 
