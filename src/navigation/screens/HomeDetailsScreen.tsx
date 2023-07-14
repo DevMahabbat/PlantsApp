@@ -26,7 +26,8 @@ const comments = [
   },
 ];
 
-const HomeDetailsScreen = ({navigation}: any) => {
+const HomeDetailsScreen = ({navigation, route}: any) => {
+  const {plant} = route.params;
   return (
     <View style={styles.mainCont}>
       <TouchableOpacity
@@ -37,23 +38,22 @@ const HomeDetailsScreen = ({navigation}: any) => {
       <ScrollView style={styles.maincontwrapper}>
         <Slider />
         <View style={styles.toptext}>
-          <Text style={styles.label}>La dandroria</Text>
+          <Text style={styles.label}>{plant.name}</Text>
           <View style={styles.favWrapper}>
             <SvgLikeIcon />
           </View>
         </View>
 
         <View style={{marginHorizontal: 25}}>
-          <Text style={styles.descText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-            animi nobis nostrum delectus dicta inventore quibusdam quisquam
-            neque sit ut!
-          </Text>
+          <Text style={styles.descText}>{plant.description}</Text>
           <View style={{flexDirection: 'row', marginVertical: 10}}>
-            {Array.from({length: 4}).map((_, index) => (
-              <SvgRatingFilled key={index} />
+            {plant.rating !== undefined &&
+              Array.from({length: plant.rating}).map((_, index) => (
+                <SvgRatingFilled key={index} />
+              ))}
+            {Array.from({length: 5 - (plant.rating || 0)}).map((_, index) => (
+              <SvgRating key={index} />
             ))}
-            <SvgRating />
           </View>
         </View>
         <View style={styles.commentsSection}>

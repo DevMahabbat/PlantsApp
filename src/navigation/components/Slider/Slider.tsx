@@ -28,14 +28,6 @@ const Slider = () => {
     flatListRef.current?.scrollToOffset({offset, animated: true});
   };
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     handleNext();
-  //   }, 3000);
-
-  //   return () => clearInterval(timer);
-  // }, []);
-
   return (
     <View style={styles.container}>
       <FlatList

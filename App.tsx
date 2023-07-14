@@ -1,22 +1,16 @@
-import {StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
 import OnboardingScreen from './src/navigation/screens/OnboardingScreen';
 import {HomeTabNavigator} from './src/navigation/navigator/HomeTabNavigator';
-import {HomeStackNavigator} from './src/navigation/stack/HomeStack';
-import axios from 'axios';
 import {Provider} from 'react-redux';
 import store from './src/redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
-
 const App = () => {
   const [firstTime, setFirstTime] = useState<boolean>(true);
-
   useEffect(() => {
     AsyncStorage.getItem('FIRST_TIME').then(res => {
       console.log(res, typeof res);
