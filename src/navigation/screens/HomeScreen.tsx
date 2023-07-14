@@ -6,18 +6,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import SvgLikeIcon from '../../assets/LikeIcon';
 import SvgRating from '../../assets/Star';
 import SvgRatingFilled from '../../assets/SvgRatingFilled';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux';
-import { AppDispatch } from '../../redux';
-import { getAllPlants } from '../../redux/slices/plantslice';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../redux';
+import {AppDispatch} from '../../redux';
+import {getAllPlants} from '../../redux/slices/plantslice';
+import {Plant} from '../../redux/types/Plant';
+import {ActivityIndicator} from 'react-native-paper';
+
+import LottieView from 'lottie-react-native';
 const HomeScreen = ({navigation}: any) => {
-let plantData = useSelector((state: RootState) => state.plantSlice)
-const dispatch = useDispatch<AppDispatch>()
+  let plantData = useSelector((state: RootState) => state.plantSlice);
+  const dispatch = useDispatch<AppDispatch>();
   // useEffect(() => {
   //   console.log("axios req");
   //   axios.get('http://10.0.2.2:3000/plants').then(res => {
@@ -26,18 +30,16 @@ const dispatch = useDispatch<AppDispatch>()
   //     console.log(err);
   //   })
   // }, [])
-  
 
   useEffect(() => {
-dispatch(getAllPlants())
+    dispatch(getAllPlants());
+  }, [dispatch]);
 
+  // console.log(plantData.plants[0].photos[0].imageUrl);
 
-  },[])
-
-console.log(plantData);
-
-
-
+  console.log('====================================');
+  console.log(plantData.plants);
+  console.log('====================================');
 
   return (
     <View style={styles.mainCont}>
@@ -45,44 +47,57 @@ console.log(plantData);
         <View style={styles.toptext}>
           <Text style={styles.label}>Discover</Text>
           <Text style={{fontSize: 22}}>🌱</Text>
-          {/* <Image
-            style={{width: 50, height: 50}}
-            source={require('../../assets/images/plant3.png')}
-          /> */}
         </View>
         {/* wrapper for rendering items */}
-        <View style={styles.itemsWrapper}>
+        {plantData.loading === 'fullfilled' ? (
+          <View style={styles.itemsWrapper}>
+            {plantData?.plants?.length > 0 &&
+              plantData.plants.map((plant: Plant) => (
+                <TouchableOpacity
+                  key={plant._id}
+                  style={styles.itemswrapper}
+                  onPress={() => navigation.navigate('HomeDetails')}>
+                  <View style={{flexDirection: 'row'}}>
+                    {plant?.photos.length > 0 && (
+                      <Image
+                        style={styles.image}
+                        source={{
+                          uri: `https://plantsapp-s6m7.onrender.com/uploads/${plant?.photos[0]?.imageUrl}`,
+                        }}
+                      />
+                    )}
+                    <View style={styles.favWrapper}>
+                      <SvgLikeIcon />
+                    </View>
+                  </View>
+                  <View>
+                    <View style={{rowGap: 5, flexDirection: 'row'}}>
+                      <View>
+                        <Text style={styles.headtext}>{plant.name}</Text>
+                        <Text style={styles.desctext}>{plant.description}</Text>
+                      </View>
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                      {plant.rating !== undefined &&
+                        Array.from({length: plant.rating}).map((_, index) => (
+                          <SvgRatingFilled key={index} />
+                        ))}
+                      {Array.from({length: 5 - (plant.rating || 0)}).map(
+                        (_, index) => (
+                          <SvgRating key={index} />
+                        ),
+                      )}
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              ))}
+
+            {/* 
+
           <TouchableOpacity
             style={styles.itemswrapper}
             onPress={() => navigation.navigate('HomeDetails')}>
-            <View style={{flexDirection: 'row'}}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/plantonb.png')}
-              />
-              <View style={styles.favWrapper}>
-                <SvgLikeIcon />
-              </View>
-            </View>
-            <View>
-              <View style={{rowGap: 5, flexDirection: 'row'}}>
-                <View>
-                  <Text style={styles.headtext}>La dandroria</Text>
-                  <Text style={styles.desctext}>Cute plant with mememe</Text>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                {Array.from({length: 4}).map((_, index) => (
-                  <SvgRatingFilled key={index} />
-                ))}
-                <SvgRating />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.itemswrapper}
-            onPress={() => navigation.navigate('HomeDetails')}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Image
                 style={styles.image}
                 source={require('../../assets/images/plantonb.png')}
@@ -96,15 +111,26 @@ console.log(plantData);
                 <Text style={styles.headtext}>La dandroria</Text>
                 <Text style={styles.desctext}>Cute plant with mememe</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                {Array.from({length: 4}).map((_, index) => (
+              <View style={{ flexDirection: 'row' }}>
+                {Array.from({ length: 4 }).map((_, index) => (
                   <SvgRatingFilled key={index} />
                 ))}
                 <SvgRating />
               </View>
             </View>
-          </TouchableOpacity>
-        </View>
+          </TouchableOpacity> */}
+          </View>
+        ) : (
+          <>
+            <LottieView
+              style={styles.lottie}
+              autoPlay={true}
+              loop
+              source={require('../../assets/animation/walkingman.json')}
+              colorFilters={[{keypath: 'Plane', color: 'rgb(255, 100, 0)'}]}
+            />
+          </>
+        )}
       </ScrollView>
     </View>
   );
@@ -169,6 +195,12 @@ const styles = StyleSheet.create({
     borderColor: '#E7E8E3',
     backgroundColor: '#fff',
   },
+  lottie: {
+    width: 100,
+    marginLeft: '30%',
+    height: 100,
+    marginTop: '30%',
+  },
   headtext: {fontSize: 20, fontWeight: '500', marginVertical: 5},
-  desctext: {fontSize: 14, width: '95%', marginBottom: 5},
+  desctext: {fontSize: 14, marginBottom: 5},
 });
