@@ -47,10 +47,6 @@ const HomeScreen = ({navigation}: any) => {
         <View style={styles.toptext}>
           <Text style={styles.label}>Discover</Text>
           <Text style={{fontSize: 22}}>🌱</Text>
-          {/* <Image
-            style={{width: 50, height: 50}}
-            source={require('../../assets/images/plant3.png')}
-          /> */}
         </View>
         {/* wrapper for rendering items */}
 
@@ -61,7 +57,9 @@ const HomeScreen = ({navigation}: any) => {
                 <TouchableOpacity
                   key={plant._id}
                   style={styles.itemswrapper}
-                  onPress={() => navigation.navigate('HomeDetails')}>
+                  onPress={() =>
+                    navigation.navigate('HomeDetails', {plant: plant})
+                  }>
                   <View style={{flexDirection: 'row'}}>
                     {plant?.photos.length > 0 && (
                       <Image
@@ -78,10 +76,8 @@ const HomeScreen = ({navigation}: any) => {
                   <View>
                     <View style={{rowGap: 5, flexDirection: 'row'}}>
                       <View>
-                        <Text style={styles.headtext}>La dandroria</Text>
-                        <Text style={styles.desctext}>
-                          Cute plant with mememe
-                        </Text>
+                        <Text style={styles.headtext}>{plant.name}</Text>
+                        <Text style={styles.desctext}>{plant.description}</Text>
                       </View>
                     </View>
                     <View style={{flexDirection: 'row'}}>
@@ -89,40 +85,15 @@ const HomeScreen = ({navigation}: any) => {
                         Array.from({length: plant.rating}).map((_, index) => (
                           <SvgRatingFilled key={index} />
                         ))}
-
-                      <SvgRating />
+                      {Array.from({length: 5 - (plant.rating || 0)}).map(
+                        (_, index) => (
+                          <SvgRating key={index} />
+                        ),
+                      )}
                     </View>
                   </View>
                 </TouchableOpacity>
               ))}
-
-            {/* 
-
-          <TouchableOpacity
-            style={styles.itemswrapper}
-            onPress={() => navigation.navigate('HomeDetails')}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/plantonb.png')}
-              />
-              <View style={styles.favWrapper}>
-                <SvgLikeIcon />
-              </View>
-            </View>
-            <View>
-              <View>
-                <Text style={styles.headtext}>La dandroria</Text>
-                <Text style={styles.desctext}>Cute plant with mememe</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <SvgRatingFilled key={index} />
-                ))}
-                <SvgRating />
-              </View>
-            </View>
-          </TouchableOpacity> */}
           </View>
         ) : (
           <>
@@ -206,5 +177,5 @@ const styles = StyleSheet.create({
     marginTop: '30%',
   },
   headtext: {fontSize: 20, fontWeight: '500', marginVertical: 5},
-  desctext: {fontSize: 14, width: '95%', marginBottom: 5},
+  desctext: {fontSize: 14, marginBottom: 5},
 });
