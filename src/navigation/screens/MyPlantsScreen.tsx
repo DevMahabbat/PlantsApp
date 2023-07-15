@@ -13,6 +13,9 @@ import SvgAddPlant from '../../assets/AddPlantIcon';
 
 // for image picker
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {useDispatch, useSelector} from 'react-redux';
+import {deletePlant} from '../../redux/slices/plantslice';
+import {AppDispatch, RootState} from '../../redux';
 
 const MyPlantsScreen = () => {
   const [selectImage, setSelectImage] = useState<any>('');
@@ -98,14 +101,15 @@ const MyPlantsScreen = () => {
         {/* Here the plants will be addded */}
         <View>
           <Text style={{marginTop: 60, fontSize: 18}}>Added plants</Text>
+
           <View style={styles.itemswrapper}>
             <Image
               style={styles.image}
               source={require('../../assets/images/plantonb.png')}
             />
             <View style={{marginTop: 15}}>
-              <Text style={styles.headtext}>La dandroria</Text>
-              <Text style={styles.desctext}>Cute plant with mememe</Text>
+              <Text style={styles.headtext}>Name</Text>
+              <Text style={styles.desctext}>Description</Text>
               <TouchableOpacity style={styles.deletebtnText}>
                 <Text style={{color: '#fff'}}>Delete</Text>
               </TouchableOpacity>
@@ -177,8 +181,8 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
   },
-  headtext: {fontSize: 20, fontWeight: '500', marginVertical: 5},
-  desctext: {fontSize: 14, width: '95%', marginBottom: 5},
+  headtext: {fontSize: 20, width: '80%', fontWeight: '500', marginVertical: 5},
+  desctext: {fontSize: 14, width: '80%', marginBottom: 5},
   deletebtnText: {
     backgroundColor: 'tomato',
     width: 100,

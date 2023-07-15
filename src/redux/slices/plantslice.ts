@@ -54,27 +54,19 @@ export const getCurrentPlant = createAsyncThunk(
   },
 );
 
-// export const deleteBlogByID = createAsyncThunk(
-//   'delete',
-//   async (data: any, {rejectWithValue}) => {
-//     try {
-//         //  console.log('burda2');
-//       let {id} = data;
-//       const res = await axios.delete(
-//         `https://64731455d784bccb4a3c3e14.mockapi.io/blogs/${id}`,
-//       )
-//         if (res.data) {
-//           let all = await axios.get(
-//             'https://64731455d784bccb4a3c3e14.mockapi.io/blogs/',
-//           );
-//           return all.data;
-//         };
-
-//     } catch (error: any) {
-//       rejectWithValue(error);
-//     }
-//   },
-// );
+export const deletePlant = createAsyncThunk(
+  'delete/plant',
+  async (id, {rejectWithValue}) => {
+    try {
+      const res = await axios.delete(
+        `https://plantsapp-s6m7.onrender.com/plants/${id}`,
+      );
+      return id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 const plantslice = createSlice({
   name: 'plantslice',
@@ -110,18 +102,20 @@ const plantslice = createSlice({
         state.loading = 'fullfilled';
       });
 
-    // builder
-    //   .addCase(deleteBlogByID.pending, state => {
-    //     state.loading = 'pending';
-    //   })
-    //   .addCase(deleteBlogByID.rejected, (state, action) => {
-    //     state.loading = 'rejected';
-    //     state.error = action.payload;
-    //   })
-    //   .addCase(deleteBlogByID.fulfilled, (state, action) => {
-    //     state.loading = 'fullfilled';
-    //     state.blogs = action.payload;
-    //   });
+    builder
+      .addCase(deletePlant.pending, state => {
+        state.loading = 'pending';
+      })
+      .addCase(deletePlant.rejected, (state, action) => {
+        state.loading = 'rejected';
+        state.error = action.payload;
+      })
+      .addCase(deletePlant.fulfilled, (state, action) => {
+        state.loading = 'fullfilled';
+        state.plants = state.plants.filter(
+          (plant: any) => plant._id !== action.payload,
+        );
+      });
   },
 });
 
