@@ -29,6 +29,7 @@ const MyPlantsScreen = () => {
       }
     });
   };
+
   const launchCameraPicker = async () => {
     await launchCamera({mediaType: 'photo'}, response => {
       if (!response.didCancel) {
@@ -107,9 +108,13 @@ const MyPlantsScreen = () => {
               style={styles.image}
               source={require('../../assets/images/plantonb.png')}
             />
-            <View style={{marginTop: 15}}>
+            <View style={{marginTop: 15, width: 150}}>
               <Text style={styles.headtext}>Name</Text>
-              <Text style={styles.desctext}>Description</Text>
+              <Text style={styles.desctext}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Aspernatur at magni obcaecati accusamus officiis quos debitis
+                quo animi nam deleniti.
+              </Text>
               <TouchableOpacity style={styles.deletebtnText}>
                 <Text style={{color: '#fff'}}>Delete</Text>
               </TouchableOpacity>
@@ -182,7 +187,7 @@ const styles = StyleSheet.create({
     height: 160,
   },
   headtext: {fontSize: 20, width: '80%', fontWeight: '500', marginVertical: 5},
-  desctext: {fontSize: 14, width: '80%', marginBottom: 5},
+  desctext: {fontSize: 14},
   deletebtnText: {
     backgroundColor: 'tomato',
     width: 100,

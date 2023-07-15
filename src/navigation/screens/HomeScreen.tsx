@@ -1,6 +1,7 @@
 import {
   Image,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -43,6 +44,7 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <View style={styles.mainCont}>
+      <StatusBar barStyle={'light-content'} />
       <ScrollView style={styles.maincontwrapper}>
         <View style={styles.toptext}>
           <Text style={styles.label}>Discover</Text>
